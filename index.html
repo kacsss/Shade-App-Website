@@ -3,74 +3,301 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your App Name | Official Site</title>
+    <title>Untangle | A Mental Health Toolkit</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #007AFF; /* iOS Blue */
-            --dark: #1c1c1e;
-            --light: #f2f2f7;
+            /* Colors based on image_0.png */
+            --bg-color: #E6E1DC; /* Soft light gray background */
+            --nav-bg: #EAE3DD; /* Slightly darker floating nav background */
+            --text-main: #1C1C1E; /* Very dark gray, almost black */
+            --button-bg: #8E8A9A; /* The soft purple/gray button color */
+            --button-text: #FFFFFF;
         }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; color: var(--dark); line-height: 1.6; }
-        header { padding: 80px 20px; text-align: center; background: white; }
-        .container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
-        .btn { background: var(--primary); color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block; margin-top: 20px; }
-        section { padding: 60px 0; border-top: 1px solid #e5e5e5; }
-        footer { background: var(--light); padding: 40px 0; font-size: 14px; text-align: center; }
-        .legal-links a { margin: 0 10px; color: var(--primary); text-decoration: none; }
-        h1 { font-size: 3rem; margin-bottom: 10px; }
-        .screenshot { width: 100%; max-width: 300px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin: 20px 0; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        /* --- Floating Navigation Bar --- */
+        nav {
+            position: fixed;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 960px;
+            height: 60px;
+            background-color: var(--nav-bg);
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            z-index: 1000;
+        }
+
+        .nav-logo-group {
+            display: flex;
+            align-items: center;
+            padding-left: 15px;
+        }
+
+        .logo-icon {
+            height: 32px;
+            width: 32px;
+            margin-right: 12px;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text-main);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: opacity 0.2s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.7;
+        }
+
+        /* Nav Download Button */
+        .btn-nav {
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 20px;
+            height: 36px;
+            padding: 0 18px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.9rem;
+        }
+
+        .btn-nav .apple-logo {
+            height: 14px;
+            fill: white;
+        }
+
+        /* --- Main Hero Section --- */
+        main {
+            padding-top: 160px; /* Space for the floating nav */
+            padding-bottom: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
+        }
+
+        .hero-layout {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 120px; /* Space between text and phone */
+        }
+
+        .hero-text-content {
+            flex: 0 0 420px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .hero-text-content h1 {
+            font-size: 4.5rem; /* Massive, heavy typography */
+            line-height: 1.05;
+            letter-spacing: -2.5px;
+            font-weight: 800;
+            margin: 0;
+        }
+
+        .hero-text-content p {
+            font-size: 1.2rem;
+            line-height: 1.5;
+            margin: 0;
+            opacity: 0.9;
+            font-weight: 400;
+            padding-right: 20px;
+        }
+
+        /* Primary Hero Button */
+        .btn-hero {
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 25px;
+            height: 48px;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.1rem;
+            align-self: flex-start;
+            margin-top: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .btn-hero .apple-logo {
+            height: 16px;
+            fill: white;
+        }
+
+        /* --- iPhone Mockup --- */
+        .phone-mockup-container {
+            flex: 0 0 auto;
+        }
+
+        .phone-mockup {
+            width: auto;
+            max-height: 720px; /* Controls the overall size of the mockup */
+            display: block;
+        }
+
+        /* --- Mandatory Sections for App Store --- */
+        /* We make them invisible and only used for anchor links (#) to keep the aesthetic clean */
+        .hidden-sections {
+            padding: 40px;
+            background: rgba(0,0,0,0.02);
+            border-radius: 20px;
+            margin-bottom: 60px;
+        }
+        
+        /* --- Responsive Design (Mobile Support) --- */
+        @media (max-width: 900px) {
+            .hero-layout {
+                flex-direction: column-reverse; /* Put phone above text on small screens */
+                gap: 50px;
+                text-align: center;
+            }
+            .hero-text-content {
+                flex: 0 0 auto;
+                align-items: center;
+                padding: 0;
+            }
+            .hero-text-content h1 {
+                font-size: 3rem;
+            }
+            .btn-hero {
+                align-self: center;
+            }
+            .phone-mockup {
+                max-height: 500px;
+            }
+            
+            /* Nav becomes simple on mobile */
+            .nav-links { display: none; }
+            .btn-nav { font-size: 0.8rem; }
+            nav { width: 95%; }
+        }
+        
+        /* SVG apple logo definition (used multiple times) */
+        svg.apple-logo-paths { display: none; }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="container">
-            <h1>Your App Name</h1>
-            <p>A brief, punchy tagline about what your app does better than everyone else.</p>
-            <img src="https://via.placeholder.com/300x600" alt="App Screenshot" class="screenshot">
-            <br>
-            <a href="#" class="btn">Download on the App Store</a>
-        </div>
-    </header>
+    <svg class="apple-logo-paths" viewBox="0 0 384 512">
+        <path id="apple-path" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 0 184.8 0 273.6c0 33.3 5.3 66.6 22.4 113.8 17.4 47.9 45.1 101.9 89.7 102.2 23.5 0 33.1-13.6 59.7-13.6 26.7 0 35.6 13.6 59.7 13.6 44.5 0 71.9-49.7 92.4-102.9 21.6-56.1 33.6-113.4 2.8-118.1zm-80.1-132c11.3-17.5 19.3-41.2 19.3-65.2 0-23.9-8-47.6-19.3-65.2-11.3-17.5-35.7-32.1-59.7-32.1-15 0-31.5 5.3-44.8 13.6C123.6 11.2 116.3 32.1 116.3 56.1c0 23.9 7.3 44.8 19.3 65.2 11.3 17.5 31.5 32.1 44.8 32.1 15 0 35.7-5.3 49-13.6c9.3-8.3 16-19.3 19.3-32.1z"/>
+    </svg>
 
-    <section id="features">
-        <div class="container">
-            <h2>Features</h2>
-            <ul>
-                <li><strong>Feature One:</strong> Describe why this is great.</li>
-                <li><strong>Feature Two:</strong> Explain the benefit here.</li>
-                <li><strong>Feature Three:</strong> Another cool thing your app does.</li>
-            </ul>
+    <nav>
+        <div class="nav-logo-group">
+            <img src="images/app_logo.png" alt="Untangle Logo" class="logo-icon">
+            <span class="logo-text">Untangle</span>
         </div>
-    </section>
+        <ul class="nav-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#release-notes">Release Notes</a></li>
+            <li><a href="#support">Support</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a href="YOUR_APP_STORE_LINK" class="btn-nav">
+            <svg class="apple-logo"><use href="#apple-path"></use></svg>
+            Download
+        </a>
+    </nav>
 
-    <section id="support">
+    <main>
         <div class="container">
-            <h2>Support</h2>
-            <p>Need help? We're here for you. For any questions, bug reports, or feature requests, please contact us at:</p>
-            <p><strong>Email:</strong> <a href="mailto:support@yourapp.com">support@yourapp.com</a></p>
-            <p>We typically respond within 24–48 hours.</p>
-        </div>
-    </section>
+            <div class="hero-layout">
+                
+                <div class="hero-text-content">
+                    <h1>Untangle your mind</h1>
+                    <p>A mental health toolkit for when life gets too loud</p>
+                    
+                    <a href="YOUR_APP_STORE_LINK" class="btn-hero">
+                        <svg class="apple-logo"><use href="#apple-path"></use></svg>
+                        Download
+                    </a>
+                </div>
 
-    <section id="privacy">
-        <div class="container">
-            <h2>Privacy Policy</h2>
-            <p>Your privacy is important to us. This app does not collect any personal data... [Insert your specific policy here].</p>
-            <p><em>Note: If you use third-party services like Firebase, AdMob, or Analytics, you MUST list them here.</em></p>
-        </div>
-    </section>
+                <div class="phone-mockup-container">
+                    <img src="https://via.placeholder.com/380x780.png?text=Upload+Mockup" alt="iPhone displaying Untangle App" class="phone-mockup">
+                </div>
 
-    <footer>
-        <div class="container">
-            <div class="legal-links">
-                <a href="#support">Support</a>
-                <a href="#privacy">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
             </div>
-            <p>&copy; 2026 Your Name/Company. All rights reserved.</p>
         </div>
-    </footer>
+    </main>
+
+    <div class="container hidden-sections">
+        <section id="features">
+            <h2>Features</h2>
+            <p>[Insert brief feature descriptions here]</p>
+        </section>
+        
+        <section id="release-notes">
+            <h2>Release Notes</h2>
+            <p>[Version 1.0.0 - Initial Release]</p>
+        </section>
+
+        <section id="support">
+            <h2>Support</h2>
+            <p>For help with Untangle, please contact: <a href="mailto:support@yourapp.com">support@yourapp.com</a></p>
+        </section>
+
+        <section id="privacy-policy">
+            <h2>Privacy Policy</h2>
+            <p>Untangle respects your privacy. [Insert your actual policy text here].</p>
+        </section>
+        
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>Contact the developer.</p>
+        </section>
+    </div>
 
 </body>
 </html>
